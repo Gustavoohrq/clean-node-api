@@ -19,7 +19,6 @@ describe('Login Routes', () => {
     accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
-
   describe('POST /signup', () => {
     test('Should return 200 on signup', async () => {
       await request(app)
@@ -27,8 +26,8 @@ describe('Login Routes', () => {
         .send({
           name: 'Gustavo',
           email: 'gustavofmariano@gmail.com',
-          password: '123',
-          passwordConfirmation: '123'
+          password: '12345',
+          passwordConfirmation: '12345'
         })
         .expect(200)
     })
@@ -36,7 +35,7 @@ describe('Login Routes', () => {
 
   describe('POST /login', () => {
     test('Should return 200 on login', async () => {
-      const password = await hash('123', 12)
+      const password = await hash('12345', 12)
       await accountCollection.insertOne({
         name: 'Gustavo',
         email: 'gustavofmariano@gmail.com',
@@ -47,7 +46,7 @@ describe('Login Routes', () => {
         .post('/api/login')
         .send({
           email: 'gustavofmariano@gmail.com',
-          password: '123'
+          password: '12345'
         })
         .expect(200)
     })
