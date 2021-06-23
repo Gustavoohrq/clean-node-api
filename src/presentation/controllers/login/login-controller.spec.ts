@@ -47,16 +47,6 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Login Controller', () => {
-  test('Should call 400 Authentication', async () => {
-    const { sut, authenticationStub } = makeSut()
-    const authSpy = jest.spyOn(authenticationStub, 'auth')
-    await sut.handle(makeFakeRequest())
-    expect(authSpy).toHaveBeenCalledWith({
-      email: 'any_email@mail.com',
-      password: 'any_password'
-    })
-  })
-
   test('Should return 401 if invalid credentials are provided', async () => {
     const { sut, authenticationStub } = makeSut()
     jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(new Promise(resolve => resolve(null)))
