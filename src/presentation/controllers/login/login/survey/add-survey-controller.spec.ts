@@ -54,7 +54,7 @@ describe('AddSurvey Controller', () => {
     MockDate.set(new Date())
   })
 
-  beforeAll(async () => {
+  afterAll(async () => {
     MockDate.reset()
   })
 
